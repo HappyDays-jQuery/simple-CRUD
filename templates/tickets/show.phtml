@@ -42,6 +42,8 @@
       </div>
       <form method="post" action="/tickets/<?= e($ticket['id']) ?>">
         <input type="hidden" name="_METHOD" value="delete">
+        <input type="hidden" name="csrf_name" value="<?=$csrf_name ?>">
+        <input type="hidden" name="csrf_value" value="<?=$csrf_value ?>">
         <div class="modal-footer">
           <button type="submit" class="btn btn-danger">削除</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
