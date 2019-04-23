@@ -65,8 +65,8 @@ mysql> set global validate_password.policy=LOW;
 
 DB・USER作成
 ```
-CREATE DATABASE slimphp;
-CREATE USER 'slimphp'@'%' IDENTIFIED WITH mysql_native_password BY 'secret';
-GRANT ALL PRIVILEGES ON `slimphp`.* TO 'slimphp'@'%' WITH GRANT OPTION;
+CREATE DATABASE `simple_crud`;
+CREATE USER 'simple'@'%' IDENTIFIED WITH mysql_native_password BY 'secret';
+GRANT ALL PRIVILEGES ON `simple_crud`.* TO 'simple'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
