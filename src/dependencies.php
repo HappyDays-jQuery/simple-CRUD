@@ -1,12 +1,7 @@
 <?php
 // DIC configuration
 
-use Dotenv\Dotenv;
-
 $container = $app->getContainer();
-
-$dotenv = new Dotenv(__DIR__ . "/../");
-$dotenv->load();
 
 // view renderer
 $container['renderer'] = function ($c) {
@@ -33,4 +28,9 @@ $container['db'] = function () {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
+};
+
+// migration
+$container['migration'] = function () {
+    return new Phpmig\Adapter\File\Flat(__DIR__ . '/../migrations/.migrations.log');
 };
