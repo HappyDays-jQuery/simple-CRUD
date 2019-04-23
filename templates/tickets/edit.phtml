@@ -11,11 +11,9 @@
           <label for="subject">件名</label>
           <input type="text" name="subject" id="subject" class="form-control" value="<?= e($ticket['subject']) ?>">
             <?php if (isset($errors)) : ?>
-              <ul>
-                  <?php foreach ($errors['subject'] as $error): ?>
-                    <li><?= $error ?></li>
-                  <?php endforeach; ?>
-              </ul>
+                <?php foreach ($errors['subject'] as $error): ?>
+                <div class="alert alert-danger" role="alert"><?= $error ?></div>
+                <?php endforeach; ?>
             <?php endif; ?>
         </div>
       </div>

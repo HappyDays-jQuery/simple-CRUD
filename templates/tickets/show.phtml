@@ -24,12 +24,9 @@
               <?php if (isset($errors)) : ?>
                 <ul>
                     <?php foreach ($errors as $error): ?>
-                      <ul>
-                          <?php foreach ($errors as $e): ?>
-                            <li><?= $e ?></li>
-                          <?php endforeach; ?>
-                      </ul>
-                      <li><?= $error ?></li>
+                        <?php foreach ($errors as $e): ?>
+                        <div class="alert alert-danger" role="alert"><?= $error ?></div>
+                        <?php endforeach; ?>
                     <?php endforeach; ?>
                 </ul>
               <?php endif; ?>
