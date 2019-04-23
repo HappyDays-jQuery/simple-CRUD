@@ -1,28 +1,28 @@
 <?= $this->fetch('header.phtml') ?>
-  <form method="POST" action="/tickets/<?= e($ticket['id']) ?>">
-    <input type="hidden" name="_METHOD" value="put">
-    <input type="hidden" name="csrf_name" value="<?=$csrf_name ?>">
-    <input type="hidden" name="csrf_value" value="<?=$csrf_value ?>">
-    <div class="card">
-      <div class="card-body">
-        <h2 class="card-title">チケット編集</h2>
-        <div class="card-text">
-          <div class="form-group">
-            <label for="subject">件名</label>
-            <input type="text" name="subject" id="subject" class="form-control" value="<?= e($ticket['subject']) ?>">
-              <?php if (isset($errors)) : ?>
-                <ul>
-                    <?php foreach ($errors['subject'] as $error): ?>
-                      <li><?= $error ?></li>
-                    <?php endforeach; ?>
-                </ul>
-              <?php endif; ?>
-          </div>
+<form method="POST" action="/tickets/<?= e($ticket['id']) ?>">
+  <input type="hidden" name="_METHOD" value="put">
+  <input type="hidden" name="csrf_name" value="<?= $csrf_name ?>">
+  <input type="hidden" name="csrf_value" value="<?= $csrf_value ?>">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">チケット編集</h2>
+      <div class="card-text">
+        <div class="form-group">
+          <label for="subject">件名</label>
+          <input type="text" name="subject" id="subject" class="form-control" value="<?= e($ticket['subject']) ?>">
+            <?php if (isset($errors)) : ?>
+              <ul>
+                  <?php foreach ($errors['subject'] as $error): ?>
+                    <li><?= $error ?></li>
+                  <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
         </div>
       </div>
-      <div class="card-body">
-        <button class="btn btn-primary">更新</button>
-      </div>
     </div>
-  </form>
+    <div class="card-body">
+      <button class="btn btn-primary">更新</button>
+    </div>
+  </div>
+</form>
 <?= $this->fetch('footer.phtml') ?>
