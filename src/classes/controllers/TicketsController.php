@@ -28,11 +28,14 @@ class TicketsController extends Controller
     /**
      * @param Request  $request
      * @param Response $response
+     * @param array    $args
      * @return ResponseInterface
      */
-    public function create(Request $request, Response $response): ResponseInterface
+    public function create(Request $request, Response $response, array $args): ResponseInterface
     {
-        return $this->renderer->render($response, 'tickets/create.phtml');
+        $args['csrf_name'] = $request->getAttribute('csrf_name');
+        $args['csrf_value'] = $request->getAttribute('csrf_value');
+        return $this->renderer->render($response, 'tickets/create.phtml', $args);
     }
 
     /**
@@ -57,12 +60,15 @@ class TicketsController extends Controller
      */
     public function show(Request $request, Response $response, array $args): ResponseInterface
     {
+        $args['csrf_name'] = $request->getAttribute('csrf_name');
+        $args['csrf_value'] = $request->getAttribute('csrf_value');
+
         try {
             $ticket = $this->fetchTicket($args['id']);
         } catch (\Exception $e) {
             return $response->withStatus(404)->write('not found');
         }
-        $data = ['ticket' => $ticket];
+        $data = array_merge(['ticket' => $ticket], $args);
         return $this->renderer->render($response, 'tickets/show.phtml', $data);
     }
 
@@ -74,12 +80,15 @@ class TicketsController extends Controller
      */
     public function edit(Request $request, Response $response, array $args): ResponseInterface
     {
+        $args['csrf_name'] = $request->getAttribute('csrf_name');
+        $args['csrf_value'] = $request->getAttribute('csrf_value');
+
         try {
             $ticket = $this->fetchTicket($args['id']);
         } catch (\Exception $e) {
             return $response->withStatus(404)->write('not found');
         }
-        $data = ['ticket' => $ticket];
+        $data = array_merge(['ticket' => $ticket], $args);
         return $this->renderer->render($response, 'tickets/edit.phtml', $data);
     }
 
