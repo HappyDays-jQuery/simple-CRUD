@@ -1,19 +1,18 @@
 {
-  "name": "slim/slim-skeleton",
-  "description": "A Slim Framework skeleton application for rapid development",
+  "name": "simple-crud",
+  "description": "Slim3を使用した簡単なCRUDサンプル。最低限の開発環境およびセキュリティ対策を入れておく。",
   "keywords": [
     "microframework",
     "rest",
     "router",
     "psr7"
   ],
-  "homepage": "http://github.com/slimphp/Slim-Skeleton",
   "license": "MIT",
   "authors": [
     {
-      "name": "Josh Lockhart",
-      "email": "info@joshlockhart.com",
-      "homepage": "http://www.joshlockhart.com/"
+      "name": "HappyDays-jQuery",
+      "email": "developer@jquery.tokyo",
+      "homepage": "http://jquery.tokyo/"
     }
   ],
   "require": {
