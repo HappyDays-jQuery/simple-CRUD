@@ -9,7 +9,7 @@ class AddTicketsTable extends Migration
      */
     public function up()
     {
-        $sql = "CREATE TABLE `tickets` (`id` INTEGER, `subject` TEXT, PRIMARY KEY (`id`));";
+        $sql = "create table `tickets` (`id` INTEGER unsigned NOT NULL auto_increment, `subject` varchar(255) NOT NULL, PRIMARY KEY(`id`));";
         $c = $this->getContainer();
         $c['db']->query($sql);
     }
