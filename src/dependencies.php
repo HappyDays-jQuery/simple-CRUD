@@ -1,7 +1,12 @@
 <?php
 // DIC configuration
 
+use Dotenv\Dotenv;
+
 $container = $app->getContainer();
+
+$dotenv = new Dotenv(__DIR__ . "/../");
+$dotenv->load();
 
 // view renderer
 $container['renderer'] = function ($c) {
@@ -19,10 +24,12 @@ $container['logger'] = function ($c) {
 };
 
 // database
-$container['db'] = function ($c) {
-    $db = $c['settings']['db'];
-    $pdo = new PDO('mysql:host=' . $db['host'] . ';dbname=' . $db['dbname'],
-        $db['user'], $db['pass']);
+$container['db'] = function () {
+    $db['host'] = getenv('db.host');
+    $db['name'] = getenv('db.name');
+    $db['user'] = getenv('db.user');
+    $db['pass'] = getenv('db.pass');
+    $pdo = new PDO('mysql:host=' . $db['host'] . ';dbname=' . $db['name'], $db['user'], $db['pass']);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
