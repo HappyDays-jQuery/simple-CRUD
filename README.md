@@ -16,6 +16,11 @@ composer install
 composer run install
 ```
 
+## migrate
+```
+vendor/bin/phpmig migrate
+```
+
 ## mysql setting
 ### mysqlをインストール
 ```
