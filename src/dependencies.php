@@ -34,3 +34,25 @@ $container['db'] = function () {
 $container['migration'] = function () {
     return new Phpmig\Adapter\File\Flat(__DIR__ . '/../migrations/.migrations.log');
 };
+
+// validator
+$container['validator::ticket:store'] = function ($container) {
+    return new DavidePastore\Slim\Validation\Validation($container->get('rule::tickets:store'));
+};
+$container['validator::ticket:delete'] = function ($container) {
+    return new DavidePastore\Slim\Validation\Validation($container->get('rule::tickets:delete'));
+};
+$container['validator::ticket:update'] = function ($container) {
+    return new DavidePastore\Slim\Validation\Validation($container->get('rule::tickets:update'));
+};
+
+// validation
+$container['rule::tickets:store'] = function () {
+    return require __DIR__ . '/../rules/tickets/store.php';
+};
+$container['rule::tickets:delete'] = function () {
+    return require __DIR__ . '/../rules/tickets/delete.php';
+};
+$container['rule::tickets:update'] = function () {
+    return require __DIR__ . '/../rules/tickets/update.php';
+};

@@ -45,6 +45,11 @@ class TicketsController extends Controller
      */
     public function store(Request $request, Response $response): ResponseInterface
     {
+        if ($request->getAttribute('has_errors')) {
+            $args['errors'] = $request->getAttribute('errors');
+            return $this->create($request, $response, $args);
+        }
+
         $subject = $request->getParsedBodyParam('subject');
         $sql = 'INSERT INTO tickets (subject) values (:subject)';
         $stmt = $this->db->prepare($sql);
@@ -100,6 +105,11 @@ class TicketsController extends Controller
      */
     public function update(Request $request, Response $response, array $args): ResponseInterface
     {
+        if ($request->getAttribute('has_errors')) {
+            $args['errors'] = $request->getAttribute('errors');
+            return $this->edit($request, $response, $args);
+        }
+
         try {
             $ticket = $this->fetchTicket($args['id']);
         } catch (\Exception $e) {
@@ -119,6 +129,11 @@ class TicketsController extends Controller
      */
     public function delete(Request $request, Response $response, array $args): ResponseInterface
     {
+        if ($request->getAttribute('has_errors')) {
+            $args['errors'] = $request->getAttribute('errors');
+            return $this->show($request, $response, $args);
+        }
+
         try {
             $ticket = $this->fetchTicket($args['id']);
         } catch (\Exception $e) {

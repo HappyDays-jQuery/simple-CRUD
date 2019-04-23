@@ -21,6 +21,18 @@
           <td colspan="2">
             <a href="/tickets/<?= e($ticket['id']) ?>/edit" class="btn btn-primary">編集</a>
             <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">削除</button>
+              <?php if (isset($errors)) : ?>
+                <ul>
+                    <?php foreach ($errors as $error): ?>
+                      <ul>
+                        <?php foreach ($errors as $e): ?>
+                          <li><?= $e ?></li>
+                        <?php endforeach; ?>
+                      </ul>
+                      <li><?= $error ?></li>
+                    <?php endforeach; ?>
+                </ul>
+              <?php endif; ?>
           </td>
         </tr>
         </tfoot>
